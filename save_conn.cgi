@@ -46,7 +46,7 @@ elsif ($in{'give'}) {
 elsif ($in{'xp'}) {
     # Grant XP
     $in{'xpadd'} =~ /^\d+$/ || &error($text{'conn_exp'});
-    my $xp;
+    my $xp = $in{'xpadd'};
     my $type;
     if ($in{'xpmode'} == 0) {
         $type = "levels";
