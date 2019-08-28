@@ -55,7 +55,7 @@ elsif ($in{'xp'}) {
         $xp || &error($text{'conn_explevel'});
         }
     my $out = &execute_minecraft_command(
-        "/xp $xp $in{'name'}");
+        "/xp add $in{'name'} $xp");
     $out =~ /Given.*experience.*\Q$in{'name'}\E/ ||
         &error(&html_escape($out));
     $msg = &text('conn_xpdone', $xp);
