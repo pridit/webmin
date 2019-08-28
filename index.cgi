@@ -43,21 +43,6 @@ elsif ($err) {
     return;
     }
 
-# Check if new version is out, if we haven't checked in the last 6 hours
-&update_last_check();
-if ($config{'last_size'} && &minecraft_server_type() eq 'default') {
-    my $jar = &get_minecraft_jar();
-    my @st = stat($jar);
-    if (@st && $st[7] != $config{'last_size'}) {
-        print "<table width=100%><tr bgcolor=#ff8888>".
-              "<td align=center><br>";
-        print &ui_form_start("download.cgi");
-        print "<b>$text{'index_upgradedesc'}</b>\n";
-        print &ui_form_end([ [ undef, $text{'index_upgrade'} ] ]);
-        print "</td></tr></table>\n";
-        }
-    }
-
 my @links = ( "edit_conf.cgi", "edit_users.cgi",
           "view_logs.cgi", "list_conns.cgi",
           "list_worlds.cgi", "edit_cmds.cgi",

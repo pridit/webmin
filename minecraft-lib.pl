@@ -741,46 +741,6 @@ eval("\$str = \"$str\"");
 return $str;
 }
 
-# get_server_jar_url()
-# Returns the URL for downloading the server JAR file
-sub get_server_jar_url
-{
-my $ver = $config{'download_version'};
-if ($ver) {
-    # Always use a specific version from S3
-    return "https://launcher.mojang.com/v1/objects/3737db93722a9e39eeada7c27e7aca28b144ffa7/server.jar";
-    }
-else {
-    # Get the URL from the download page
-    my ($host, $port, $page, $ssl) = &parse_http_url($download_page_url);
-    return undef if (!$host);
-    my ($out, $err);
-    &http_download($host, $port, $page, \$out, \$err, undef, $ssl,
-               undef, undef, 10, 0, 1);
-    return undef if ($err);
-    $out =~ /"((http|https):[^"]+server\.jar)"/ ||
-        return undef;
-    return $1;
-    }
-}
-
-# check_server_download_size()
-# Returns the size in bytes of the minecraft server that is available 
-# for download
-sub check_server_download_size
-{
-my ($host, $port, $page, $ssl) = &parse_http_url(&get_server_jar_url());
-
-# Make HTTP connection
-my @headers;
-push(@headers, [ "Host", $host ]);
-push(@headers, [ "User-agent", "Webmin" ]);
-push(@headers, [ "Accept-language", "en" ]);
-alarm(5);
-my $h = &make_http_connection($host, $port, $ssl, "HEAD", $page, \@headers);
-alarm(0);
-return undef if (!ref($h));
-
 # Read headers
 my $line;
 ($line = &read_http_connection($h)) =~ tr/\r\n//d;
@@ -932,21 +892,6 @@ for(my $i=0; $i<@xpmap; $i+=2) {
         }
     }
 return undef;
-}
-
-# update_last_check()
-# If the last check time is too old OR the version has changed, check for the
-# latest version
-sub update_last_check
-{
-if (time() - $config{'last_check'} > 6*60*60 ||
-    $config{'download_version'} ne $config{'last_version'}) {
-    my $sz = &check_server_download_size();
-    $config{'last_check'} = time();
-    $config{'last_size'} = $sz;
-    $config{'last_version'} = $config{'download_version'};
-    &save_module_config();
-    }
 }
 
 # get_current_day_usage()

@@ -36,23 +36,7 @@ if ($type eq "minecraft_up") {
     return { 'up' => 1 };
     }
 elsif ($type eq "minecraft_latest") {
-    # Compare version with latest available to download
-    &update_last_check();
-    if ($config{'last_size'}) {
-        my $jar = $config{'minecraft_jar'} ||
-              $config{'minecraft_dir'}."/"."minecraft_server.jar";
-        my @st = stat($jar);
-        if (@st && $st[7] != $config{'last_size'}) {
-            return { 'up' => 0,
-                 'desc' => $text{'monitor_newversion'} };
-            }
-        elsif (!@st) {
-            return { 'up' => -1,
-                 'desc' => &text('monitor_nojar', $jar) };
-            }
-        }
     return { 'up' => 1 };
-    }
 else {
     return { 'up' => -1,
          'desc' => $text{'monitor_notype'} };
