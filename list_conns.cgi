@@ -13,24 +13,24 @@ our (%in, %text, %config);
 my @conns = &list_connected_players();
 
 if (@conns) {
-	print $text{'conns_desc'},"<p>\n";
-	my @grid;
-	@grid = map { &ui_checkbox("d", $_)." ".
-		      &ui_link("view_conn.cgi?name=".&urlize($_),
-			       &html_escape($_)) } @conns;
-	print &ui_form_start("mass_conns.cgi", "post");
-	my @links = ( &select_all_link("d"),
-		      &select_invert_link("d") );
-	print &ui_links_row(\@links);
-	print &ui_grid_table(\@grid, 8, "100%");
-	print &ui_links_row(\@links);
-	print &ui_form_end([
-		[ "disc", $text{'conns_disc'} ],
-		]);
-	}
+    print $text{'conns_desc'},"<p>\n";
+    my @grid;
+    @grid = map { &ui_checkbox("d", $_)." ".
+              &ui_link("view_conn.cgi?name=".&urlize($_),
+                   &html_escape($_)) } @conns;
+    print &ui_form_start("mass_conns.cgi", "post");
+    my @links = ( &select_all_link("d"),
+              &select_invert_link("d") );
+    print &ui_links_row(\@links);
+    print &ui_grid_table(\@grid, 8, "100%");
+    print &ui_links_row(\@links);
+    print &ui_form_end([
+        [ "disc", $text{'conns_disc'} ],
+        ]);
+    }
 else {
-	print "<b>$text{'conns_none'}</b><p>\n";
-	}
+    print "<b>$text{'conns_none'}</b><p>\n";
+    }
 
 print &ui_form_start("view_conn.cgi");
 print "<b>$text{'conns_enter'}</b> ",

@@ -11,8 +11,8 @@ my $conf = &get_minecraft_config();
 &ui_print_header(undef, $text{'users_title'}, "");
 
 my @tabs = ( [ 'white', $text{'users_tabwhite'} ],
-	     [ 'op', $text{'users_tabop'} ],
-	     [ 'ip', $text{'users_tabip'} ] );
+         [ 'op', $text{'users_tabop'} ],
+         [ 'ip', $text{'users_tabip'} ] );
 print &ui_tabs_start(\@tabs, 'mode', $in{'mode'} || 'white', 1);
 
 # Whitelisted users
@@ -24,9 +24,9 @@ print $text{'users_whitedesc'},"<p>\n";
 print &ui_textarea('white', join("\n", @white), 10, 80),"<br>\n";
 my $enabled = &find_value("white-list", $conf);
 print &ui_checkbox("enabled", 1, $text{'users_enabled'},
-		   $enabled =~ /true|yes/i);
+           $enabled =~ /true|yes/i);
 print &ui_form_end([ [ undef, $text{'save'} ],
-		     [ 'apply', $text{'users_apply'} ] ]);
+             [ 'apply', $text{'users_apply'} ] ]);
 print &ui_tabs_end_tab('mode', 'white');
 
 # Operator users

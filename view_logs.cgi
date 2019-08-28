@@ -25,18 +25,18 @@ print &ui_form_end()."<p>\n";
 # Results
 my $cmd;
 if ($in{'search'}) {
-	$cmd = "grep ".quotemeta($in{'search'})." ".quotemeta($logfile)." | ".
-	       "tail -".quotemeta($in{'lines'});
-	}
+    $cmd = "grep ".quotemeta($in{'search'})." ".quotemeta($logfile)." | ".
+           "tail -".quotemeta($in{'lines'});
+    }
 else {
-	$cmd = "tail -".quotemeta($in{'lines'})." ".quotemeta($logfile);
-	}
+    $cmd = "tail -".quotemeta($in{'lines'})." ".quotemeta($logfile);
+    }
 print "<pre>";
 my $fh = "OUT";
 &open_execute_command($fh, $cmd, 1, 1);
 while(<$fh>) {
-	print &html_escape($_);
-	}
+    print &html_escape($_);
+    }
 close($fh);
 print "</pre>";
 

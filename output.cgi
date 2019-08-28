@@ -14,6 +14,6 @@ my $fh = "OUT";
 select($fh); $| = 1; select(STDOUT);
 print "<pre>\n";
 while(<$fh>) {
-	print &html_escape($_);
-	}
+    print &html_escape($_);
+    }
 close($fh);

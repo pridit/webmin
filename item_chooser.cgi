@@ -29,29 +29,29 @@ print &ui_form_end(),"<br>\n";
 # Get the item list, and apply search
 my @items = &list_minecraft_items();
 if ($in{'search'}) {
-	@items = grep { $_->{'name'} =~ /\Q$in{'search'}\E/i } @items;
-	}
+    @items = grep { $_->{'name'} =~ /\Q$in{'search'}\E/i } @items;
+    }
 
 if (@items) {
-	print &ui_columns_start([ $text{'chooser_id'},
-				  $text{'chooser_num'},
-				  $text{'chooser_name'} ]);
-	foreach my $i (@items) {
-		my $sel = $i->{'name'};
-		if ($i->{'id'} =~ /:(\d+)$/) {
-			$sel .= ":".$1;
-			}
-		print &ui_columns_row([
-		    "<a href='' onClick='return select(\"$sel\")'>".
-		      $i->{'name'}."</a>",
-		    $i->{'id'},
-		    &html_escape($i->{'desc'}),
-		    ]);
-		}
-	print &ui_columns_end();
-	}
+    print &ui_columns_start([ $text{'chooser_id'},
+                  $text{'chooser_num'},
+                  $text{'chooser_name'} ]);
+    foreach my $i (@items) {
+        my $sel = $i->{'name'};
+        if ($i->{'id'} =~ /:(\d+)$/) {
+            $sel .= ":".$1;
+            }
+        print &ui_columns_row([
+            "<a href='' onClick='return select(\"$sel\")'>".
+              $i->{'name'}."</a>",
+            $i->{'id'},
+            &html_escape($i->{'desc'}),
+            ]);
+        }
+    print &ui_columns_end();
+    }
 else {
-	print "<b>$text{'chooser_none'}</b><p>\n";
-	}
+    print "<b>$text{'chooser_none'}</b><p>\n";
+    }
 
 &popup_footer();

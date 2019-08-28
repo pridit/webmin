@@ -31,16 +31,16 @@ $config{'playtime_ips'} = $in{'ips_def'} ? undef : $in{'ips'};
 # Setup or disable cron job
 my $job = &get_playtime_job();
 if (!$in{'enabled'}) {
-	if ($job) {
-		&webmincron::delete_webmin_cron($job);
-		}
-	}
+    if ($job) {
+        &webmincron::delete_webmin_cron($job);
+        }
+    }
 else {
-	$job ||= { 'module' => $module_name,
-		   'interval' => 6*60,
-		   'func' => 'check_playtime_limits' };
-	&webmincron::save_webmin_cron($job);
-	}
+    $job ||= { 'module' => $module_name,
+           'interval' => 6*60,
+           'func' => 'check_playtime_limits' };
+    &webmincron::save_webmin_cron($job);
+    }
 
 &webmin_log("playtime");
 &redirect("");

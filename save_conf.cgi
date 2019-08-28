@@ -13,12 +13,12 @@ my $conf = &get_minecraft_config();
 
 # Validate and store inputs, starting with seed
 if ($in{'seed_def'}) {
-	&save_directive("level-seed", "", $conf);
-	}
+    &save_directive("level-seed", "", $conf);
+    }
 else {
-	$in{'seed'} =~ /^\S+$/ || &error($text{'conf_seed'});
-	&save_directive("level-seed", $in{'seed'}, $conf);
-	}
+    $in{'seed'} =~ /^\S+$/ || &error($text{'conf_seed'});
+    &save_directive("level-seed", $in{'seed'}, $conf);
+    }
 
 # New world type
 &save_directive("level-type", $in{'type'}, $conf);
@@ -56,10 +56,10 @@ $in{'players'} =~ /^[1-9]\d*$/ || &error($text{'conf_eplayers'});
 
 # Max time between ticks
 $in{'ticks_def'} || $in{'ticks'} =~ /^\d+(\.\d+)?$/ || $in{'ticks'} == -1 ||
-	&error($text{'conf_eticks'});
+    &error($text{'conf_eticks'});
 &save_directive("max-tick-time", $in{'ticks_def'} ? undef :
-				 $in{'ticks'} == -1 ? -1 :
-				 int($in{'ticks'}*1000), $conf);
+                 $in{'ticks'} == -1 ? -1 :
+                 int($in{'ticks'}*1000), $conf);
 
 # Message of the day
 $in{'motd_def'} || $in{'motd'} =~ /\S/ || &error($text{'conf_emotd'});
@@ -71,23 +71,23 @@ $in{'build'} =~ /^[1-9]\d*$/ || &error($text{'conf_ebuild'});
 
 # Spawn various creatures
 foreach my $s ("animals", "monsters", "npcs") {
-	&save_directive("spawn-$s", $in{$s} ? "true" : "false", $conf);
-	}
+    &save_directive("spawn-$s", $in{$s} ? "true" : "false", $conf);
+    }
 
 # Spawn protection range
 $in{'protect_def'} || $in{'protect'} =~ /^\d+$/ ||
-	&error($text{'conf_eprotect'});
+    &error($text{'conf_eprotect'});
 &save_directive("spawn-protection", $in{'protect_def'} ? undef : $in{'protect'},
-		$conf);
+        $conf);
 
 # IP address
 $in{'ip_def'} || &check_ipaddress($in{'ip'}) ||
-	&error($text{'conf_eip'});
+    &error($text{'conf_eip'});
 &save_directive("server-ip", $in{'ip_def'} ? undef : $in{'ip'}, $conf);
 
 # TCP port
 $in{'port_def'} || $in{'port'} =~ /^\d+$/ ||
-	&error($text{'conf_eport'});
+    &error($text{'conf_eport'});
 &save_directive("server-port", $in{'port_def'} ? undef : $in{'port'}, $conf);
 
 # Query port
@@ -103,12 +103,12 @@ $in{'port_def'} || $in{'port'} =~ /^\d+$/ ||
 
 # Java command-line flags
 if ($config{'java_args'} ne $in{'args'}) {
-	&lock_file($module_config_file);
-	$config{'java_args'} = $in{'args'};
-	&save_module_config(\%config);
-	&update_init_script_args($in{'args'});
-	&unlock_file($module_config_file);
-	}
+    &lock_file($module_config_file);
+    $config{'java_args'} = $in{'args'};
+    &save_module_config(\%config);
+    &update_init_script_args($in{'args'});
+    &unlock_file($module_config_file);
+    }
 
 &webmin_log("conf");
 &redirect("");
