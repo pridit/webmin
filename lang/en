@@ -229,6 +229,7 @@ cmds_gamemode=Change default game mode
 cmds_survival=Survival
 cmds_creative=Creative
 cmds_adventure=Adventure
+cmds_spectator=Spectator
 cmds_gamemodeb=Change Mode
 cmds_difficulty=Change difficulty level
 cmds_peaceful=Peaceful
