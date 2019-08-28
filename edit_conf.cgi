@@ -132,6 +132,11 @@ foreach my $s ("animals", "monsters", "npcs") {
 my $protect = &find_value("spawn-protection", $conf) || 16;
 print &ui_table_row($text{'conf_protect'},
     &ui_textbox("protect", $protect, 5));
+    
+# Generate structures
+my $structures = &find_value("generate-structures", $conf) || "true";
+print &ui_table_row($text{'conf_structures'},
+    &ui_yesno_radio("structures", lc($structures) eq "true"));
 
 print &ui_table_hr();
 

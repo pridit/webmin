@@ -80,6 +80,9 @@ $in{'protect_def'} || $in{'protect'} =~ /^\d+$/ ||
 &save_directive("spawn-protection", $in{'protect_def'} ? undef : $in{'protect'},
         $conf);
 
+# Generate structures
+&save_directive("generate-structures", $in{'structures'} ? 'true' : 'false', $conf);
+
 # IP address
 $in{'ip_def'} || &check_ipaddress($in{'ip'}) ||
     &error($text{'conf_eip'});
