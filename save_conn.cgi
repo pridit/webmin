@@ -47,15 +47,15 @@ elsif ($in{'xp'}) {
     # Grant XP
     $in{'xpadd'} =~ /^\d+$/ || &error($text{'conn_exp'});
     my $xp;
+    my $type;
     if ($in{'xpmode'} == 0) {
-        $xp = $in{'xpadd'};
+        $type = "levels";
         }
     else {
-        $xp = &level_to_orbs($in{'xpadd'});
-        $xp || &error($text{'conn_explevel'});
+        $type = "points";
         }
     my $out = &execute_minecraft_command(
-        "/xp add $in{'name'} $xp");
+        "/xp add $in{'name'} $xp $type");
     $out =~ /Given.*experience.*\Q$in{'name'}\E/ ||
         &error(&html_escape($out));
     $msg = &text('conn_xpdone', $xp);

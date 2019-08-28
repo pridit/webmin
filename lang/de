@@ -126,7 +126,6 @@ conn_etext=Fehlender Nachrichtentext
 conn_events=Letzte Events
 conn_ex=X Position muss eine Zahl sein
 conn_exp=Fehlende Anzahl an XP zu gew&#228;hren
-conn_explevel=Level ist zu hoch, um Kugeln zu berechnen
 conn_ey=Y Position muss eine Zahl sein
 conn_ez=Z Position muss eine Zahl sein
 conn_give=Gew&#228;hre item mit ID
