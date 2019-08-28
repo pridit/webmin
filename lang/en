@@ -16,8 +16,6 @@ index_restartdesc=Click this button to apply the current configuration by restar
 index_atboot=Start at boot?
 index_atbootdesc=Change this option to control whether the Minecraft server is started at boot time or not. If it is not currently started at boot and Yes is chosen, a new init script will be created.
 index_return=module index
-index_download=Download Server
-index_downloaddesc=Click this button to download and install the latest version of the Minecraft server JAR file.
 index_upgrade=Upgrade Now
 
 check_edir=The base directory $1 does not exist

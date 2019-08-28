@@ -76,12 +76,6 @@ else {
                   $text{'index_startdesc'});
     }
 
-if (&minecraft_server_type() eq 'default') {
-    # Show download button
-    print &ui_buttons_row("download.cgi", $text{'index_download'},
-                  $text{'index_downloaddesc'});
-    }
-
 # Show start at boot button
 &foreign_require("init");
 my $starting = &init::action_status($config{'init_name'});
