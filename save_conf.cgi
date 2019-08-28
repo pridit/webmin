@@ -23,7 +23,7 @@ else {
 # New world type
 &save_directive("level-type", $in{'type'}, $conf);
 
-# Generate structures?
+# Generate structures in new worlds
 &save_directive("generate-structures", $in{'structs'} ? 'true' : 'false', $conf);
 
 # Allow nether?
@@ -79,9 +79,6 @@ $in{'protect_def'} || $in{'protect'} =~ /^\d+$/ ||
     &error($text{'conf_eprotect'});
 &save_directive("spawn-protection", $in{'protect_def'} ? undef : $in{'protect'},
         $conf);
-
-# Generate structures
-&save_directive("generate-structures", $in{'structures'} ? 'true' : 'false', $conf);
 
 # IP address
 $in{'ip_def'} || &check_ipaddress($in{'ip'}) ||

@@ -55,7 +55,6 @@ conf_animals=Spawn animals?
 conf_monsters=Spawn monsters?
 conf_npcs=Spawn NPCs?
 conf_protect=Spawn protection radius
-conf_structures=Generate structures?
 conf_command=Allow command block?
 conf_ip=Listen on IP address
 conf_port=Listen on port
