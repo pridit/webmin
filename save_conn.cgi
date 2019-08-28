@@ -13,17 +13,17 @@ my $msg;
 if ($in{'msg'}) {
     # Send a message
     $in{'text'} =~ /\S/ || &error($text{'conn_etext'});
-    &send_server_command("/msg $in{'name'} $in{'text'}");
+    &send_server_command("msg $in{'name'} $in{'text'}");
     $msg = $text{'conn_msgdone'};
     }
 elsif ($in{'kill'}) {
     # Kill this player
-    &send_server_command("/kill $in{'name'}");
+    &send_server_command("kill $in{'name'}");
     $msg = $text{'conn_killdone'};
     }
 elsif ($in{'kick'}) {
     # Disconnect this player
-    &send_server_command("/kick $in{'name'}");
+    &send_server_command("kick $in{'name'}");
     $msg = $text{'conn_kickdone'};
     }
 elsif ($in{'give'}) {

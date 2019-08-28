@@ -236,8 +236,8 @@ my $pid = &is_minecraft_server_running();
 $pid || return "Not running!";
 
 # Try graceful shutdown
-&send_server_command("/save-all");
-&send_server_command("/stop");
+&send_server_command("save-all");
+&send_server_command("stop");
 for(my $i=0; $i<10; $i++) {
     last if (!&is_minecraft_server_running());
     sleep(1);
